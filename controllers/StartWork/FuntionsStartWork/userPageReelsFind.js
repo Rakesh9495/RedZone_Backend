@@ -4,9 +4,7 @@ const HttpError = require("../../../models/http-error");
 
 const userPageReelsFind = async (user_profile_url, NEXT) => {
   console.log("run inside userpagereels find ");
-  const browser_1 = await puppeteer.launch({
-    executablePath: '/usr/bin/chromium-browser'
-  });
+  const browser_1 = await puppeteer.launch();
   console.log("run inside userpagereels find 2");
   const page_1 = await browser_1.newPage();
 console.log("run inside userpagereels find 3");
