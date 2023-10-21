@@ -3,7 +3,11 @@ const puppeteer = require("puppeteer");
 const HttpError = require("../../../models/http-error");
 
 const userPageReelsFind = async (user_profile_url, NEXT) => {
-  const browser_1 = await puppeteer.launch({ headless: "new" });
+  const browser_1 = await puppeteer.launch({
+    headless: "new",
+    // executablePath: "./Browers/BraveBrower/brave",
+    executablePath: "./Browers/Chrome/chrome",
+  });
   const page_1 = await browser_1.newPage();
 
   try {
