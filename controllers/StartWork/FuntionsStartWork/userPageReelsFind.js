@@ -1,9 +1,23 @@
 const puppeteer = require("puppeteer");
+require("dotenv").config();
+
 
 const HttpError = require("../../../models/http-error");
 
 const userPageReelsFind = async (user_profile_url, NEXT) => {
-  const browser_1 = await puppeteer.launch({ headless: "new" });
+  const browser_1 = await puppeteer.launch({
+    headless: "new",
+    args: [
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+      "--single-process",
+      "--no-zygote",
+    ],
+    executablePath:
+      process.env.NODE_ENV === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
+  });
   const page_1 = await browser_1.newPage();
 
   try {
@@ -19,7 +33,8 @@ const userPageReelsFind = async (user_profile_url, NEXT) => {
     }
   }
 
-  let text =  "div class=_aajw, div role=tablist failed in UserPageReelsFind. waitforselector is failed";
+  let text =
+    "div class=_aajw, div role=tablist failed in UserPageReelsFind. waitforselector is failed";
   try {
     await page_1.waitForSelector('div[class="_aajw"]');
   } catch (err) {
@@ -31,10 +46,7 @@ const userPageReelsFind = async (user_profile_url, NEXT) => {
     } catch (err1) {
       await page_1.close();
       await browser_1.close();
-      const error = new HttpError(
-        text,
-        500
-      );
+      const error = new HttpError(text, 500);
       return NEXT(error);
     }
   }
