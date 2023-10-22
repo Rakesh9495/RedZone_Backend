@@ -4,9 +4,6 @@ const {join} = require('path');
 
 const HttpError = require("../../../models/http-error");
 
-module.exports = {
-  cacheDirectory: join(__dirname, '.cache', 'puppeteer'),
-};
 
 const userPageReelsFind = async (user_profile_url, NEXT) => {
   console.log("run inside userpagereels find ");
