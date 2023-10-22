@@ -5,7 +5,6 @@ require("dotenv").config();
 const HttpError = require("../../../models/http-error");
 
 const userPageReelsFind = async (user_profile_url, NEXT) => {
-<<<<<<< HEAD
   const browser_1 = await puppeteer.launch({
     headless: "new",
     args: [
@@ -19,11 +18,10 @@ const userPageReelsFind = async (user_profile_url, NEXT) => {
         ? process.env.PUPPETEER_EXECUTABLE_PATH
         : puppeteer.executablePath(),
   });
-=======
+
   console.log("run inside userpagereels find ");
   const browser_1 = await puppeteer.launch();
   console.log("run inside userpagereels find 2");
->>>>>>> 3adb1dcf81c9c32e71b720a89e1c6da7b9eef34a
   const page_1 = await browser_1.newPage();
 console.log("run inside userpagereels find 3");
   try {
